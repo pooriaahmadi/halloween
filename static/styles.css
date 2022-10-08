@@ -1,0 +1,312 @@
+@font-face {
+	font-family: Rubik;
+	src: url("fonts/Rubik-Regular.ttf");
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Rubik;
+	src: url("fonts/Rubik-Medium.ttf");
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: Rubik;
+	src: url("fonts/Rubik-Bold.ttf");
+	font-weight: bold;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Rubik;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+	position: relative;
+}
+
+body {
+	background-color: #18181a;
+	padding: 0 20px;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 0;
+}
+
+header > h1 {
+	font-size: 24px;
+	font-weight: 500;
+	color: white;
+}
+
+header > img {
+	width: 25px;
+	height: auto;
+	cursor: pointer;
+}
+
+.menu {
+	display: flex;
+	justify-content: flex-end;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: -100%;
+	transition: 0.5s;
+	backdrop-filter: blur(3px);
+}
+
+.menu > div {
+	width: 80%;
+	height: 100%;
+	background-color: #5e32ba;
+	border-radius: 20px 0 0 20px;
+	padding: 0 20px;
+}
+
+.menu > div > .top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 0;
+}
+
+.menu > div > .top > img {
+	cursor: pointer;
+}
+
+.menu > div > .top > p {
+	font-size: 24px;
+	font-weight: 500;
+	color: white;
+}
+
+.menu > div > .links {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+	gap: 20px;
+}
+
+.menu > div > .links > a {
+	text-decoration: none;
+	color: #5e32ba;
+	background-color: white;
+	border-radius: 8px;
+	font-size: 24px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 7px 0;
+}
+
+.matrix {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	flex-wrap: wrap;
+	width: 100%;
+	background-color: #5e32ba;
+	border-radius: 10px;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.matrix > .row {
+	width: 100%;
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+.matrix > .row > .led {
+	width: calc((100vw - 130px) / 8);
+	height: calc((100vw - 130px) / 8);
+	background-color: #c8c8c8;
+	border-radius: 5px;
+}
+.brightness {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.brightness > p {
+	color: white;
+	font-weight: 500;
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+.slider {
+	width: 100%;
+	border-radius: 2em;
+	background-color: white;
+	height: 10px;
+	position: relative;
+}
+
+.slider > .button {
+	width: 20px;
+	height: 20px;
+	background-color: #5e32ba;
+	border-radius: 50%;
+	position: absolute;
+	left: 0;
+	top: -5px;
+	transition: 0.5s;
+	cursor: pointer;
+}
+
+.slider > .button:hover {
+	width: 22px;
+	height: 22px;
+	top: -5.5px;
+}
+
+.sliderinput {
+	appearance: none;
+	width: 100%;
+	height: 10px;
+	background-color: white;
+	outline: none;
+	opacity: 0.7;
+	transition: opacity 0.2s;
+	border-radius: 2em;
+}
+
+.sliderinput:hover {
+	opacity: 1;
+}
+
+.sliderinput::-webkit-slider-thumb {
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	background-color: #5e32ba;
+	cursor: pointer;
+	border-radius: 50%;
+}
+
+.currenteffect {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 15px;
+	margin-bottom: 20px;
+}
+
+.currenteffect > p {
+	font-size: 16px;
+	font-weight: 500;
+	color: white;
+}
+
+.currenteffect > span {
+	font-size: 14px;
+	font-weight: 500;
+	padding: 10px 15px;
+	background-color: #5e32ba;
+	color: white;
+	border-radius: 5px;
+}
+
+.effects {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 10px;
+	width: 100%;
+}
+
+.effects > p {
+	font-weight: 500;
+	font-size: 16px;
+	color: white;
+}
+
+.effects > .boxes {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.effects > .boxes > .effect {
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 10px 0;
+	flex-basis: calc(100% / 2 - 10px);
+	border-radius: 5px;
+	color: white;
+	background-color: #eb6123;
+}
+
+.picker {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 10px;
+}
+
+.picker > p {
+	font-size: 16px;
+	font-weight: 500;
+	color: white;
+}
+
+.chooser {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.chooser > .color {
+	width: calc((100vw - 130px) / 8);
+	height: calc((100vw - 130px) / 8);
+	background-color: #c8c8c8;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.chooser > .color.active {
+	border: 2px solid white;
+}
+
+.chooser > img {
+	width: calc((100vw - 130px) / 8);
+	height: calc((100vw - 130px) / 8);
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.chooser > img.active {
+	border: 2px solid white;
+}
+
+.chooser > input {
+	display: none;
+}
