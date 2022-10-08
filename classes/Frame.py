@@ -28,6 +28,18 @@ class Frame:
         for i in range(self.width):
             self.pixels.append(Pixel(row * self.height + i, color))
 
+    def draw_frame_at_pos(self, frame: Frame, x: int, y: int) -> None:
+        for pixel in frame.pixels:
+            index = pixel.index + y * self.width
+            if pixel.index // 8 % 2 == 0:
+                if index // 8 == (index - x) // 8:
+                    index -= x
+                    self.pixels.append(Pixel(index, pixel.color))
+            else:
+                if index // 8 == (index + x) // 8:
+                    index += x
+                    self.pixels.append(Pixel(index, pixel.color))
+
     def add_led(self, id: int, color: Color):
         self.pixels.append(Pixel(id, color))
 

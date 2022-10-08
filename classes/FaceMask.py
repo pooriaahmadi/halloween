@@ -4,12 +4,14 @@ from .Rainbow import Rainbow
 from .RainbowHorizontal import RainbowHorizontal
 from .Custom import Custom
 from .Animated import Animated
+from .ScrollingText import ScrollingText
 import time
 
 
 class FaceMask:
 
     EFFECTS = {
+        "scrolling_text": ScrollingText(8, 8, 200, True),
         "vertical_rainbow": Rainbow(2),
         "horizontal_rainbow": RainbowHorizontal(2),
         "custom": Custom(8, 8),
@@ -65,7 +67,7 @@ class FaceMask:
                                 dma, invert, brightness, channel)
         self.strip.begin()
         self.color_wipe(Color(0, 0, 0), 0)
-        self.__current_effect = self.EFFECTS["vertical_rainbow"]
+        self.__current_effect = self.EFFECTS["scrolling_text"]
         self.fps = fps
         self.clients = []
 

@@ -4,7 +4,6 @@ from classes import FaceMask
 import config
 from rpi_ws281x import Color
 from threading import Thread
-import time
 
 app = Flask(__name__)
 facemask = FaceMask(config.LED["PIN"], config.LED["COUNT"], config.LED["FREQUENCY"],
