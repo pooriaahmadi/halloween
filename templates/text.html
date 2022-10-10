@@ -1,0 +1,95 @@
+{% extends 'layout/app.html' %} {% block body %}
+<div class="matrix"></div>
+<div class="picker">
+	<p>Color</p>
+	<div class="chooser">
+		<div class="color" data-color="255,0,0"></div>
+		<div class="color" data-color="0,255,0"></div>
+		<div class="color" data-color="0,0,255"></div>
+		<div class="color" data-color="255,255,0"></div>
+		<div class="color" data-color="0,255,255"></div>
+		<div class="color" data-color="255,0,255"></div>
+		<img src="/static/images/edit.svg" alt="edit" />
+		<input type="color" />
+	</div>
+	<div class="data">
+		<div class="text">
+			<p>Text:</p>
+			<input type="text">
+		</div>
+	</div>
+</div>
+{% endblock %} {% block additional_scripts %}
+<script>
+	const editButton = document.querySelector(".chooser > img:first-of-type");
+	const textInput = document.querySelector(".data>.text>input");
+	let currentColor = "255,0,0";
+	let text = "";
+
+	const changeColor = async () => {
+		const response = await fetch(`/api/effects/current/parameters/color`, {
+			headers: {
+				"Content-Type": "application/json"
+			},
+			method: "post",
+			body: JSON.stringify({
+				data: currentColor
+			})
+		})
+	}
+	textInput.addEventListener("change", async (e) => {
+		const response = fetch("/api/effects/current/parameters/text", {
+			headers: {
+				"Content-Type": "application/json"
+			},
+			method: "post",
+			body: JSON.stringify({
+				data: e.target.value
+			})
+		})
+	})
+	const fetchData = async () => {
+		await fetch(`/api/effects/${16}`, { method: "POST" })
+		const response = await fetch(`/api/effects/current/parameters`)
+		const data = await response.json()
+	}
+	fetchData()
+	const hexToRgb = (hex) =>
+		hex
+			.replace(
+				/^#?([a-f\d])([a-f\d])([a-f\d])$/i,
+				(m, r, g, b) => "#" + r + r + g + g + b + b
+			)
+			.substring(1)
+			.match(/.{2}/g)
+			.map((x) => parseInt(x, 16));
+	const colorChooser = document.querySelector(
+		'.chooser > input[type="color"]'
+	);
+	const colorButtons = Array.from(
+		document.querySelectorAll(".chooser > .color")
+	);
+	colorButtons.forEach((item) => {
+		const rgb = item.dataset.color.split(",");
+		item.style.backgroundColor = `rgb(${item.dataset.color})`;
+		item.addEventListener("click", () => {
+			currentColor = rgb.map((item) => parseInt(item));
+			changeColor()
+			colorButtons.forEach((item) => item.classList.remove("active"));
+			editButton.classList.remove("active");
+			item.classList.add("active");
+		});
+	});
+
+	colorChooser.addEventListener("change", (e) => {
+		editButton.style.fill = e.target.value;
+		currentColor = hexToRgb(e.target.value);
+		changeColor()
+	});
+	editButton.addEventListener("click", () => {
+		colorChooser.click();
+		colorButtons.forEach((item) => item.classList.remove("active"));
+		editButton.classList.add("active");
+	});
+</script>
+{% endblock %}

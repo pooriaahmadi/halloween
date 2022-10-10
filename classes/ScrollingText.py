@@ -24,25 +24,28 @@ class ScrollingText(Figure):
         self.width = width
         self.height = height
         self.current_frame = Frame.empty(width, height)
-        self.text = "pooria"
+        self.set_parameter("text", "pooria")
+        self.set_parameter("color", Color(255, 0, 0))
 
-    @property
-    def text(self) -> str:
-        return self.__text
+    def set_parameter(self, key: str, value):
+        if key == "color" and not isinstance(value, int):
+            self.parameters[key] = Color(
+                int(value[0]), int(value[1]), int(value[2]))
+            for letter in self.LETTERS.values():
+                letter.change_color(self.parameters[key])
+            return
 
-    @text.setter
-    def text(self, new_text: str) -> None:
-        self.__text = new_text
+        self.parameters[key] = value
 
     def render(self):
         return self.current_frame
 
     def step(self):
         self.current_frame.pixels = []
-        if self.index // 5 >= len(self.text):
-            self.index = 0
+        if self.index // 5 >= len(self.parameters["text"]):
+            self.index = -8
 
-        for index, character in enumerate(self.text):
+        for index, character in enumerate(self.parameters["text"]):
             frame = self.LETTERS[character]
             self.current_frame.draw_frame_at_pos(
                 frame, index * 5 - self.index, 2)

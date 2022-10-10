@@ -1,3 +1,4 @@
+import json
 from typing import Dict, List
 from flask import Flask, render_template, request
 from classes import FaceMask
@@ -22,6 +23,11 @@ def root():
 @app.route("/custom")
 def custom():
     return render_template("custom.html")
+
+
+@app.route("/text")
+def text():
+    return render_template("text.html")
 
 
 @app.route("/api/leds")
@@ -109,6 +115,17 @@ def get_effects():
 @app.get("/api/effects/current")
 def get_current_effect():
     return str(list(facemask.EFFECTS.values()).index(facemask.current_effect))
+
+
+@app.get("/api/effects/current/parameters")
+def effect_parameters_get():
+    return facemask.current_effect.parameters
+
+
+@app.post("/api/effects/current/parameters/<string:key>")
+def effect_parameters_set(key):
+    facemask.current_effect.set_parameter(key, request.json["data"])
+    return facemask.current_effect.parameters
 
 
 facemask_thread.setDaemon(True)

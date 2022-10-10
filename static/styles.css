@@ -202,7 +202,7 @@ header > img {
 	border-radius: 50%;
 }
 
-.currenteffect {
+.currenteffect, .text {
 	width: 100%;
 	display: flex;
 	justify-content: flex-start;
@@ -211,9 +211,17 @@ header > img {
 	margin-bottom: 20px;
 }
 
-.currenteffect > p {
+.currenteffect, .text > p {
 	font-size: 16px;
 	font-weight: 500;
+	color: white;
+}
+.text > input {
+	width: 100%;
+	border-radius: 5px;
+	padding: 5px;
+	background-color: transparent;
+	border: #5e32ba 1px solid;
 	color: white;
 }
 

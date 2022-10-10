@@ -11,7 +11,6 @@ import time
 class FaceMask:
 
     EFFECTS = {
-        "scrolling_text": ScrollingText(8, 8, 200, True),
         "vertical_rainbow": Rainbow(2),
         "horizontal_rainbow": RainbowHorizontal(2),
         "custom": Custom(8, 8),
@@ -51,7 +50,8 @@ class FaceMask:
                 255, 255, 0),  Color(255, 255, 0), Color(255, 100, 0), Color(255, 100, 0)],
             [0, Color(255, 100, 0), Color(255, 100, 0), Color(255, 255, 0), Color(
                 255, 255, 0), Color(255, 100, 0), Color(255, 100, 0)]
-        ], 8)])
+        ], 8)]),
+        "scrolling_text": ScrollingText(8, 8, 200, True),
     }
 
     def __init__(self, pin: int, count: int, frequency: int, dma: int, brightness: int, invert: bool, channel: int, fps: int = 60):
