@@ -46,7 +46,11 @@ class ScrollingText(Figure):
             self.index = -8
 
         for index, character in enumerate(self.parameters["text"]):
-            frame = self.LETTERS[character]
+            if character == " ":
+                frame = Frame.empty(8, 8)
+            else:
+                frame = self.LETTERS[character]
+
             self.current_frame.draw_frame_at_pos(
                 frame, index * 5 - self.index, 2)
 
