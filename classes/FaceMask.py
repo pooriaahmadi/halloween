@@ -52,6 +52,7 @@ class FaceMask:
                 255, 255, 0), Color(255, 100, 0), Color(255, 100, 0)]
         ], 8)]),
         "scrolling_text": ScrollingText(8, 8, 200, True),
+        "hi": Animated([Frame.load_from_file_matrix_numbers("figures/words/h1.txt", Color(255, 0, 0))]),
     }
 
     def __init__(self, pin: int, count: int, frequency: int, dma: int, brightness: int, invert: bool, channel: int, fps: int = 60):
