@@ -19,7 +19,7 @@ class ScrollingText(Figure):
     LETTERS: Dict[str, Frame] = read_files([f for f in os.listdir(
         "figures/letters") if os.path.isfile(os.path.join("figures/letters", f))])
 
-    def __init__(te):
+    def __init__(self, width: int, height: int, wait: int = 3, wipe: bool = False):
         super().__init__(wait, wipe)
         self.width = width
         self.height = height
