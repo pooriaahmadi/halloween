@@ -5,7 +5,6 @@ from .RainbowHorizontal import RainbowHorizontal
 from .Custom import Custom
 from .Animated import Animated
 from .ScrollingText import ScrollingText
-from .InstantText import InstantText
 import time
 
 
@@ -53,7 +52,6 @@ class FaceMask:
                 255, 255, 0), Color(255, 100, 0), Color(255, 100, 0)]
         ], 8)]),
         "scrolling_text": ScrollingText(8, 8, 200, True),
-        "instant_text": InstantText(8, 8, 500, True),
         "hi": Animated([Frame.load_from_file_matrix_numbers("figures/words/hi.txt", Color(255, 0, 0))]),
     }
 
