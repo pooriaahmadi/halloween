@@ -9,6 +9,8 @@ class Frame:
         self.pixels = pixels
         self.width = width
         self.height = height
+        self.data_width = None
+        self.data_height = None
 
     def draw(self, strip: PixelStrip) -> None:
         for pixel in self.pixels:
@@ -64,6 +66,31 @@ class Frame:
             parsed_data.append(parsed_line)
 
         return Frame.load_from_matrix_numbers(parsed_data, color, width, height)
+    
+    @staticmethod
+    def load_from_file_matrix_numbers_custom(path: str, color: Color, width, height) -> Frame:
+        file = open(path, "r")
+        raw_data = file.read().split("\n")
+        data_height = len(raw_data)
+        data_width = len(raw_data[0])
+        for index, line in enumerate(raw_data):
+            raw_data[index] += "0"*(width - data_width)
+        for i in range(height - data_height):
+            raw_data.append("0"*width)
+        file.close()
+
+        parsed_data = []
+        for line in raw_data:
+            parsed_line = []
+            for character in line:
+                parsed_line.append(int(character))
+
+            parsed_data.append(parsed_line)
+
+        frame = Frame.load_from_matrix_numbers(parsed_data, color, width, height)
+        frame.data_width = data_width
+        frame.data_height = data_height
+        return frame
 
     @staticmethod
     def load_from_matrix_numbers(data: List[List[int]], color: Color, width: int, height: int) -> Frame:

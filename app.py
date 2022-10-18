@@ -29,6 +29,10 @@ def custom():
 def text():
     return render_template("text.html")
 
+@app.route("/instant")
+def instant_text():
+    return render_template("instant.html")
+
 
 @app.route("/api/leds")
 def current_frame():

@@ -33,6 +33,6 @@ class InstantText(ScrollingText):
                 frame = self.LETTERS[character]
 
             self.current_frame.draw_frame_at_pos(
-                frame, index * 5, 2)
+                frame, self.total_length(index), 2)
 
         self.index += 1
