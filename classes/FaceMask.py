@@ -5,6 +5,7 @@ from .RainbowHorizontal import RainbowHorizontal
 from .Custom import Custom
 from .Animated import Animated
 from .ScrollingText import ScrollingText
+from .InstantText import InstantText
 import time
 
 
@@ -51,7 +52,8 @@ class FaceMask:
             [0, Color(255, 100, 0), Color(255, 100, 0), Color(255, 255, 0), Color(
                 255, 255, 0), Color(255, 100, 0), Color(255, 100, 0)]
         ], 8)]),
-        "scrolling_text": ScrollingText(8, 8, 200, True),
+        "scrolling_text": ScrollingText(8, 8, 150, True),
+        "instant_text": InstantText(8, 8, 600, True),
         "hi": Animated([Frame.load_from_file_matrix_numbers("figures/words/hi.txt", Color(255, 0, 0))]),
     }
 
@@ -68,7 +70,7 @@ class FaceMask:
                                 dma, invert, brightness, channel)
         self.strip.begin()
         self.color_wipe(Color(0, 0, 0), 0)
-        self.__current_effect = self.EFFECTS["scrolling_text"]
+        self.__current_effect = self.EFFECTS["instant_text"]
         self.fps = fps
         self.clients = []
 
