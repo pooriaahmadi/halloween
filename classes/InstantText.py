@@ -1,5 +1,6 @@
 from .ScrollingText import ScrollingText
 from .Frame import Frame
+from rpi_ws281x import Color
 
 
 class InstantText(ScrollingText):
