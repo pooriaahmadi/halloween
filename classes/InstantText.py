@@ -1,7 +1,10 @@
 from .ScrollingText import ScrollingText
+from .Frame import Frame
+
 
 class InstantText(ScrollingText):
     words = []
+
     def __init__(self, width: int, height: int, wait: int = 3, wipe: bool = False):
         super().__init__(width, height, wait, wipe)
         self.set_parameter("text", "hi 5")
@@ -19,7 +22,7 @@ class InstantText(ScrollingText):
 
     def step(self):
         self.current_frame.pixels = []
-        if self.index >= len(words):
+        if self.index >= len(self.words):
             self.index = 0
 
         for index, character in enumerate(self.words[self.index]):
